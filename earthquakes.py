@@ -12,10 +12,10 @@ result = []
 for record in geodata["features"]:
     props = record["properties"]
     place = props["place"]
-    if "California" in place:
+    if "California" in place or ", CA" in place:
         magnitude = props["mag"]
         timestamp = props["time"]
-        date = datetime.utcfromtimestamp(timestamp % 1000)
+        date = datetime.utcfromtimestamp(timestamp // 1000)
         result.append(date.isoformat() + " | " + place + " | Magnitude: " + str(magnitude))
 
 result.sort()
